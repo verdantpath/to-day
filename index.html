@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <title>To Day</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>To Day</h1>
+    <div id="add-item-container">
+      <input v-model="newToDo" placeholder="Add Item"></input>
+      <button name="submit" value="submit" v-on:click="addToDo" type="submit">Submit</button>
+    </div>
+    <div id="todo-items">
+      <ul v-bind:todos="todos">
+        <li v-for="todo in todos">{{ todo.title }}</li>
+      </ul>
+    </div>
+  </div>
+</body>
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    sitename: 'Todo Today',
+    todos: [
+      {
+        id: 1,
+        title: "Get the fuck out of here",
+        completed: false
+      },
+      {
+        id: 2,
+        title: "Shut up",
+        completed: false
+      }
+    ],
+    newToDo: ''
+  },
+  methods: {
+    addToDo: function(){
+      this.todos.push({
+        id: this.todos.length + 1,
+        title: this.newToDo,
+        completed: false 
+      });
+      this.newToDo = '';
+    }
+  }
+});
+</script>
+</html>
